@@ -1,0 +1,274 @@
+tags:
+- name: client
+  description: client API
+
+paths:
+
+# [GET] client
+  /client:
+    get:
+      tags:
+      - client
+      summary: Liste client
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] client
+    post:
+      tags:
+      - client
+      summary: Creer client
+      parameters:
+      - name: body
+        in: body
+        description: client Data
+        required: true
+        schema:
+          $ref: '#/definitions/client'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] client/id
+  /client/{id}:
+    get:
+      tags:
+      - client
+      summary: Find client By Id
+      parameters:
+      - name: id
+        in: path
+        description: client Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] client/{id}
+    put:
+      tags:
+      - client
+      summary: Modifier client
+      parameters:
+      - name: id
+        in: path
+        description: id client
+        required: true
+      - name: body
+        in: body
+        description: client Data
+        required: false
+        schema:
+          $ref: '#/definitions/client'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] client/id
+    delete:
+      tags:
+      - client
+      summary: Supprimer client By Id
+      parameters:
+      - name: id
+        in: path
+        description: client Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] client pagination
+  /client/page/{pageSize}/{page}:
+    get:
+      tags:
+      - client
+      summary: Liste client avec pagination
+      parameters:
+      - name: pageSize
+        in: path
+        description: nombre item client
+        required: true
+        type: integer
+      - name: page
+        in: path
+        description: nombre page client
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [GET] client-projet/idClient
+  /client-projet/{idClient}:
+    get:
+      tags:
+      - client
+      summary: Find all projet client By idClient
+      parameters:
+      - name: idClient
+        in: path
+        description: client Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+# [POST] send message client
+/client-sms:
+    post:
+      tags:
+      - client
+      summary: Send sms client
+      parameters:
+      - name: body
+        in: body
+        description: sms Data
+        required: true
+        schema:
+          $ref: '#/definitions/smsClient'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [POST]  remarque client
+/client-remarques:
+    post:
+      tags:
+      - client
+      summary: create remarque client
+      parameters:
+      - name: body
+        in: body
+        description: remarque Data
+        required: true
+        schema:
+          $ref: '#/definitions/remarqueClient'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] remarque client/{idRermaque}
+    delete:
+      tags:
+      - client
+      summary: Supprimer remarque By Id
+      parameters:
+      - name: idRermaque
+        in: path
+        description: remarque Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+  
+
+# definitions
+definitions:
+  client:
+    type: object
+    required:
+        - adresse
+        - email
+        - nomPrenom
+        - telephone
+    properties:
+      adresse:
+        type: string
+        description: user adresse
+        required: true
+      email:
+        type: string
+        description: user email
+        required: true
+      nomPrenom:
+        type: string
+        description: user nomPrenom
+        required: true
+      telephone:
+        type: string
+        description: user telephone
+        required: true
+
+  smsClient:
+    type: object
+    required:
+        - idClient
+        - message
+    properties:
+      idClient:
+        type: integer
+        description: id client
+        required: true
+      message:
+        type: string
+        description: message
+        required: true
+
+  remarqueClient:
+    type: object
+    required:
+        - text
+        - clients
+    properties:
+      text:
+        type: string
+        description: text rerarque
+        required: true
+      clients:
+        type: integer
+        description: id client
+        required: true  
+schemes:
+ - https
+ - http

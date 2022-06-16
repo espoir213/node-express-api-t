@@ -1,0 +1,123 @@
+tags:
+- name: assurance
+  description: assurance API
+
+paths:
+
+# [GET] assurance
+  /assurance:
+    get:
+      tags:
+      - assurance
+      summary: Liste assurance
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] assurance
+    post:
+      tags:
+      - assurance
+      summary: Creer assurance
+      parameters:
+      - name: body
+        in: body
+        description: assurance Data
+        required: true
+        schema:
+          $ref: '#/definitions/assurance'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] assurance/id
+  /assurance/{id}:
+    get:
+      tags:
+      - assurance
+      summary: Find assurance By Id
+      parameters:
+      - name: id
+        in: path
+        description: assurance Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] assurance/{id}
+    put:
+      tags:
+      - assurance
+      summary: Modifier assurance
+      parameters:
+      - name: id
+        in: path
+        required: false
+      - name: body
+        in: body
+        description: assurance Data
+        required: false
+        schema:
+          $ref: '#/definitions/assurance'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] assurance/id
+    delete:
+      tags:
+      - assurance
+      summary: Supprimer assurance By Id
+      parameters:
+      - name: id
+        in: path
+        description: assurance Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  assurance:
+    type: object
+    required:
+        - telephoneAssurance
+        - emailAssurance
+    properties:
+      telephoneAssurance:
+        type: string
+        description:  telephone Assurance
+      emailAssurance:
+        type: string
+        description:  email Assurance
+
+
+schemes:
+ - https
+ - http

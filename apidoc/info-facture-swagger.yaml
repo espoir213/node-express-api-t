@@ -1,0 +1,146 @@
+tags:
+- name: infos-facture
+  description: infos-facture API
+
+paths:
+
+# [GET] infos-facture
+  /infos-facture/by-facture/{idfacture}:
+    get:
+      tags:
+      - infos-facture
+      summary: Liste infos-facture by id facture
+      parameters:
+      - name: idfacture
+        in: path
+        description: id facture 
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] infos-facture
+  /infos-facture:
+    post:
+      tags:
+      - infos-facture
+      summary: Creer infos-facture
+      parameters:
+      - name: body
+        in: body
+        description: infos-facture Data
+        required: true
+        schema:
+          $ref: '#/definitions/infos-facture'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] infos-facture/id
+  /infos-facture/{id}:
+    get:
+      tags:
+      - infos-facture
+      summary: Find infos-facture By Id
+      parameters:
+      - name: id
+        in: path
+        description: infos-facture Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] infos-facture/{id}
+    put:
+      tags:
+      - infos-facture
+      summary: Modifier infos-facture
+      parameters:
+      - name: id
+        in: path
+        required: false
+      - name: body
+        in: body
+        description: infos-facture Data
+        required: false
+        schema:
+          $ref: '#/definitions/infos-facture'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] infos-facture/id
+    delete:
+      tags:
+      - infos-facture
+      summary: Supprimer infos-facture By Id
+      parameters:
+      - name: id
+        in: path
+        description: infos-facture Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  infos-facture:
+    type: object
+    required:
+        - quantite
+        - coutUnite
+        - impot
+        - total
+        - description
+        - facture
+    properties:
+      quantite:
+        type: integer
+        description:  quantite infos facture
+      coutUnite:
+        type: integer
+        description:  cout Unite infos facture
+      impot:
+        type: integer
+        description:  pourcentage impot infos facture
+      total:
+        type: integer
+        description:  total infos facture
+      description:
+        type: string
+        description:  description infos facture
+      facture:
+        type: integer
+        description:  id facture
+
+
+schemes:
+ - https
+ - http

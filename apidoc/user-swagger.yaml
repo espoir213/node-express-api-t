@@ -1,0 +1,639 @@
+tags:
+- name: user
+  description: user API
+
+paths:
+
+# [POST] user
+  /users:
+    post:
+      tags:
+      - user
+      summary: Register user
+      parameters:
+      - name: body
+        in: body
+        description: user Data
+        required: true
+        schema:
+          $ref: '#/definitions/user'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] user/id
+  /users/{id}:
+    get:
+      tags:
+      - user
+      summary: Find user By Id
+      parameters:
+      - name: id
+        in: path
+        description: user Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] user/{id}
+    put:
+      tags:
+      - user
+      summary: Modifier user
+      parameters:
+      - name: id
+        in: path
+        description: id user
+        type: integer
+        required: true
+      - name: body
+        in: body
+        description: user Data
+        required: false
+        schema:
+          $ref: '#/definitions/user'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] user/id
+    delete:
+      tags:
+      - user
+      summary: Supprimer user By Id
+      parameters:
+      - name: id
+        in: path
+        description: user Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] user/confirmation/:token
+  /users/confirmation/{token}:
+    get:
+      tags:
+      - user
+      summary: Confirmer compte user par token dans email
+      parameters:
+      - name: token
+        in: path
+        description: user token
+        required: true
+        type: string
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [POST] revoier email confirmation
+  /users/resend-confirmation-email:
+    post:
+      tags:
+      - user
+      summary: Revoier email de confirmation
+      parameters:
+      - name: body
+        in: body
+        description:  user data
+        required: true
+        schema:
+          $ref: '#/definitions/confirmation'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [POST] refresh token
+  /users/refresh-token:
+    post:
+      tags:
+      - user
+      summary: refresh token user
+      parameters:
+      - name: body
+        in: body
+        description: refresh token user 
+        required: true
+        schema:
+          $ref: '#/definitions/refresh'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [POST] mot de passe oublie
+  /users/forgot-password:
+    post:
+      tags:
+      - user
+      summary: Mot de passe oublié
+      parameters:
+      - name: body
+        in: body
+        description: email user 
+        required: true
+        schema:
+          $ref: '#/definitions/confirmation'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+# [POST] reset password token
+  /users/reset-password/{token}:
+    post:
+      tags:
+      - user
+      summary: Reset mot de passe 
+      parameters:
+      - name: token
+        in: path
+        description: token user
+        required: true
+        type: string
+      - name: body
+        in: body
+        description: mot de passe user 
+        required: true
+        schema:
+          $ref: '#/definitions/resetPassword'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [POST] login
+  /users/login:
+    post:
+      tags:
+      - user
+      summary: Authentification
+      parameters:
+      - name: body
+        in: body
+        description: login user 
+        required: true
+        schema:
+          $ref: '#/definitions/login'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] user/edit-password/{id}
+  /users/edit-password:
+    put:
+      tags:
+      - user
+      summary: Modifier mot de passe user
+      parameters:
+      - name: id
+        in: path
+        description: id user
+        type: integer
+        required: true
+      - name: body
+        in: body
+        description: user Data
+        required: true
+        schema:
+          $ref: '#/definitions/editPassord'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] info-societe/{idUser}
+  /info-societe/{idUser}:
+    get:
+      tags:
+      - user
+      summary: Find info societe user By Id user
+      parameters:
+      - name: idUser
+        in: path
+        description: user Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] info-societe/{id}
+  /info-societe/{id}:
+    put:
+      tags:
+      - user
+      summary: Update info-societe form/data
+      parameters:
+      - name: id
+        in: path
+        description: id user
+        type: integer
+        required: true
+      - name: body
+        in: body
+        description: info-societe Data
+        required: false
+        schema:
+          $ref: '#/definitions/infoSociete'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+# [GET] formule-reservation/{idUser}
+  /formule-reservation/{idUser}:
+    get:
+      tags:
+      - user
+      summary: Find formule reservation user By Id user
+      parameters:
+      - name: idUser
+        in: path
+        description: user Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] formule-reservation/{id}
+  /formule-reservation/{id}:
+    put:
+      tags:
+      - user
+      summary: Update formule reservation
+      parameters:
+      - name: id
+        in: path
+        description: id user
+        type: integer
+        required: true
+      - name: body
+        in: body
+        description: formule reservation Data
+        required: false
+        schema:
+          $ref: '#/definitions/formuleResevation'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+# [GET] parametre-systeme/{idUser}
+  /parametre-systeme/{idUser}:
+    get:
+      tags:
+      - user
+      summary: Find parametre systeme user By Id user
+      parameters:
+      - name: idUser
+        in: path
+        description: user Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] parametre-systeme/{id}
+  /parametre-systeme/{id}:
+    put:
+      tags:
+      - user
+      summary: Update parametre systeme
+      parameters:
+      - name: id
+        in: path
+        description: id user
+        type: integer
+        required: true
+      - name: body
+        in: body
+        description: parametre systeme Data
+        required: false
+        schema:
+          $ref: '#/definitions/parmametreSysteme'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+# definitions
+definitions:
+  user:
+    type: object
+    required:
+        - password
+        - membres
+    properties:
+      membres:
+        type: integer
+        description: id membre
+      password:
+        type: string
+        description: mot de passe user
+
+  confirmation:
+    type: object
+    required:
+        - email
+    properties:
+      email:
+        type: string
+        description: email user
+  
+  refresh:
+    type: object
+    required:
+        - refresh_token
+    properties:
+      refresh_token:
+        type: string
+        description: refresh_token user  
+  resetPassword:
+    type: object
+    required:
+        - password
+    properties:
+      password:
+        type: string
+        description: password user
+  login:
+    type: object
+    required:
+        - email
+        - password
+    properties:
+      password:
+        type: string
+        description: email user
+      username:
+        type: string
+        description: username user
+  editPassord:
+    type: object
+    required:
+        - password
+        - newPassword
+    properties:
+      password:
+        type: string
+        description: mot passe actuel user
+      newPassword:
+        type: string
+        description: Nouveau mot de passe user
+  
+  infoSociete:
+    type: object
+    required:
+        - nomEntreprise
+        - logoEntreprise
+        - email
+        - telephone
+        - adresse
+        - ville
+        - pays
+        - fuseauHoraire
+        - monnaie
+        - brocheKRA
+        - taxe
+        - detailPayement
+        - clause
+        - citations
+        - sendEmail
+        - reparation
+        - ajoutPiece
+        - tacheVehiculeInfo
+        - vehiculeInfo
+        - activeRestreindre
+        - activeSignaturesFacture
+        - activeSignaturesDevis
+    properties:
+      nomEntreprise:
+        type: string
+        description: nom Entrepriser
+      logos:
+        type: string
+        description: logo Entreprise
+      email:
+        type: string
+        description: email Entreprise
+      telephone:
+        type: string
+        description: telephone Entreprise
+      adresse:
+        type: string
+        description: adresse Entreprise
+      ville:
+        type: string
+        description: ville Entreprise
+      pays:
+        type: string
+        description: pays Entreprise
+      fuseauHoraire:
+        type: string
+        description: fuseau Horaire Entreprise
+      monnaie:
+        type: string
+        description: monnaie Entreprise
+      brocheKRA:
+        type: string
+        description: broche KRA Entreprise
+      detailPayement:
+        type: string
+        description: detail Payement Entreprise
+      taxe:
+        type: integer
+        description:  % taxe Entreprise
+      clause:
+        type: string
+        description: clause Entreprise
+      citations:
+        type: string
+        description: citations Entreprise
+      sendEmail:
+        type: boolean
+        description: Envoyez des SMS aux membres de l'équipe lorsque de nouvelles tâches sont créées.
+      reparation:
+        type: boolean
+        description: Réparer les réparations couvertes par l'assurance.
+      ajoutPiece:
+        type: boolean
+        description: Ajouter des pièces/dépenses de véhicule à l'inventaire.
+      vehiculeInfo:
+        type: boolean
+        description: Les véhicules doivent être marqués comme terminés avant le départ.
+      activeRestreindre:
+        type: boolean
+        description: Restreindre le départ jusqu'à ce que toutes les pièces, dépenses, les créances et les débiteurs sont compensés.
+      activeSignaturesFacture:
+        type: boolean
+        description: Activez les signatures des clients sur les factures.
+      activeSignaturesDevis:
+        type: boolean
+        description: Activez les signatures des clients sur les devis.
+
+  formuleResevation:
+    type: object
+    required:
+        - formuleReservationVehicule
+        - avisFormule
+        - avisNonResponsable
+        - termeCondition
+        - activeDiagramme
+    properties:
+      formuleReservationVehicule:
+        type: boolean
+        description: Formulaire de réservation de véhicule.
+      avisFormule:
+        type: string
+        description: Formulaire de réservation de véhicule Avis de non-responsabilité.
+      avisNonResponsable:
+        type: string
+        description: Avis de non-responsabilité du formulaire de réservation de véhicule.
+      termeCondition:
+        type: string
+        description: Termes et conditions.
+      activeDiagramme:
+        type: string
+        description: Activer le diagramme de voiture pour marquer les bosses et les rayures.
+
+  parmametreSysteme:
+    type: object
+    required:
+        - nameSysteme
+        - userName
+        - keyAPI
+        - idServeur
+        - userNameSMTP
+        - fromEmail
+        - hostSMTP
+        - passwordSMTP
+        - portSMTP
+        - encryptionSMTP 
+    properties:
+      nameSysteme:
+        type: string
+        description: Nom du système.
+      userName:
+        type: string
+        description: Nom d'utilisateur.
+      keyAPI:
+        type: string
+        description: clé API.
+      idServeur:
+        type: string
+        description: Identifiant du serveur.
+      userNameSMTP:
+        type: string
+        description: Nom d'utilisateur SMTP.
+      fromEmail:
+        type: string
+        description: Envoyer un e-mail en tant que.
+      hostSMTP:
+        type: string
+        description: host SMTP.
+      passwordSMTP:
+        type: string
+        description: Mot de passe SMTP.
+      portSMTP:
+        type: string
+        description: port SMTP.
+      encryptionSMTP:
+        type: string
+        description: Chiffrement SMTP.
+
+
+      
+schemes:
+ - https
+ - http

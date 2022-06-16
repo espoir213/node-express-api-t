@@ -1,0 +1,421 @@
+tags:
+- name: projet
+  description: projet API
+
+paths:
+
+# [GET] projet
+  /projet:
+    get:
+      tags:
+      - projet
+      summary: Liste projet
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] projet
+    post:
+      tags:
+      - projet
+      summary: Creer projet
+      parameters:
+      - name: body
+        in: body
+        description: projet Data
+        required: true
+        schema:
+          $ref: '#/definitions/projet'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] projet/id
+  /projet/{id}:
+    get:
+      tags:
+      - projet
+      summary: Find projet By Id
+      parameters:
+      - name: id
+        in: path
+        description: projet Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] projet/{id}
+    put:
+      tags:
+      - projet
+      summary: Modifier projet
+      parameters:
+      - name: id
+        in: path
+        required: false
+      - name: body
+        in: body
+        description: projet Data
+        required: false
+        schema:
+          $ref: '#/definitions/projet'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] projet/id
+    delete:
+      tags:
+      - projet
+      summary: Supprimer projet By Id
+      parameters:
+      - name: id
+        in: path
+        description: projet Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] projet pagination
+  /projet/page/{pageSize}/{page}:
+    get:
+      tags:
+      - projet
+      summary: Liste projet avec pagination
+      parameters:
+      - name: pageSize
+        in: path
+        description: nombre item projet
+        required: true
+        type: integer
+      - name: page
+        in: path
+        description: nombre page projet
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST]  remarque projet
+/projet-remarques:
+    post:
+      tags:
+      - projet
+      summary: create remarque projet
+      parameters:
+      - name: body
+        in: body
+        description: remarque Data
+        required: true
+        schema:
+          $ref: '#/definitions/remarqueProjet'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] remarque projet/{idRermaque}
+    delete:
+      tags:
+      - projet
+      summary: Supprimer remarque By Id
+      parameters:
+      - name: idRermaque
+        in: path
+        description: remarque Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+# [GET] status projet
+/projet-status:
+  get:
+    tags:
+    - projet
+    summary: Liste status projet
+    responses:
+      200:
+        description: 'OK'
+      500:
+        description: 'Server Error'
+
+
+# [GET] projet/id
+/projet/by-status/{status}:
+    get:
+      tags:
+      - projet
+      summary: Find all projet By status
+      parameters:
+      - name: status
+        in: path
+        description: projet status
+        required: true
+        type: string
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+# [POST] porteur vehicule
+/projet-vehicule/porteur-vehicule: 
+    post:
+      tags:
+      - projet
+      summary: Creer porteur vehicule
+      parameters:
+      - name: body
+        in: body
+        description: porteur vehicule Data
+        required: true
+        schema:
+          $ref: '#/definitions/porteur-vehicule'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] /projet-vehicule/porteur-vehicule{id}
+    delete:
+      tags:
+      - projet
+      summary: Supprimer porteur vehicule By Id
+      parameters:
+      - name: id
+        in: path
+        description: porteur vehicule Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] vehicule/{id}
+/projet-vehicule/{id}:
+    put:
+      tags:
+      - projet
+      summary: Modifier vehicule
+      parameters:
+      - name: id
+        in: path
+        required: false
+      - name: body
+        in: body
+        description: vehicule Data
+        required: false
+        schema:
+          $ref: '#/definitions/projet-vehicule'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] vehicule/details/{id}
+/projet-vehicule/details/{id}:
+    put:
+      tags:
+      - projet
+      summary: Modifier details vehicule
+      parameters:
+      - name: id
+        in: path
+        required: false
+      - name: body
+        in: body
+        description: details vehicule Data
+        required: false
+        schema:
+          $ref: '#/definitions/projet-details-vehicule'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+
+
+# definitions
+definitions:
+  projet-vehicule:
+    type: object
+    required:
+        - isPorteur
+        - porteurVehicule
+    properties:
+      isPorteur:
+        type: boolean
+        description:  is Porteur
+      porteurVehicule:
+        type: string
+        description:  id porteur Vehicule
+  
+  remarqueProjet:
+    type: object
+    required:
+        - text
+        - projets
+    properties:
+      text:
+        type: string
+        description: text rerarque
+        required: true
+      projets:
+        type: integer
+        description: id projet
+        required: true
+  
+  porteur-vehicule:
+    type: object
+    required:
+        - email
+        - nomPrenom
+        - telephone
+    properties:
+      email:
+        type: string
+        description: porteur vehicule email
+        required: true
+      nomPrenom:
+        type: string
+        description: porteur vehicule nomPrenom
+        required: true
+      telephone:
+        type: string
+        description: porteur vehicule telephone
+        required: true
+
+  projet-details-vehicule:
+    type: object
+    required:
+        - marque
+        - model
+        - numero
+        - vin
+        - moteur
+        - kilometrage
+        - uniteKilometrage
+        - couleur
+        - dateAssurance
+        - campagnieAssurance
+        - dateEntre
+        - heureEntre
+        - details
+
+    properties:
+      marque:
+        type: string
+        description:   marque vehicule
+        required: true
+      model:
+        type: string
+        description: vehicule model
+        required: true
+      numero:
+        type: string
+        description:  numero vehicule 
+        required: true
+      vin:
+        type: string
+        description:  vin vehicule 
+        required: true
+      moteur:
+        type: string
+        description:  moteur vehicule 
+        required: true
+      kilometrage:
+        type: string
+        description:  kilometrage vehicule 
+        required: true
+      uniteKilometrage:
+        type: string
+        description:  unite Kilometrage vehicule 
+        required: true
+      couleur:
+        type: string
+        description:  couleur vehicule 
+        required: true
+      campagnieAssurance:
+        type: string
+        description:  campagnie Assurance vehicule 
+        required: true
+      dateEntre:
+        type: string
+        description:  date d'Entre vehicule 
+        required: true
+      heureEntre:
+        type: string
+        description:  heure d'Entre vehicule 
+        required: true
+      details:
+        type: string
+        description:  details vehicule 
+        required: true
+
+schemes:
+ - https
+ - http

@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  backend:
+    build:
+      context: './'
+      dockerfile: dockerfile
+      # build: .
+    image: cartool-backend:1.0
+    ports: 
+      - "3000:3000"
+    volumes:
+      - ./apidoc:/home/client/apidoc
+    

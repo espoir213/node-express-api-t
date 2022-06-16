@@ -1,0 +1,208 @@
+tags:
+- name: membre
+  description: membre API
+
+paths:
+
+# [GET] membre
+  /membres:
+    get:
+      tags:
+      - membre
+      summary: Liste membre
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] membre
+    post:
+      tags:
+      - membre
+      summary: Register membre
+      parameters:
+      - name: body
+        in: body
+        description: membre Data
+        required: true
+        schema:
+          $ref: '#/definitions/membre'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] membre/id
+  /membres/{id}:
+    get:
+      tags:
+      - membre
+      summary: Find membre By Id
+      parameters:
+      - name: id
+        in: path
+        description: membre Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] membre/{id}
+    put:
+      tags:
+      - membre
+      summary: Modifier membre
+      parameters:
+      - name: id
+        in: path
+        description: id membre
+        type: integer
+        required: true
+      - name: body
+        in: body
+        description: membre Data
+        required: false
+        schema:
+          $ref: '#/definitions/membre'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] membre/id
+    delete:
+      tags:
+      - membre
+      summary: Supprimer membre By Id
+      parameters:
+      - name: id
+        in: path
+        description: membre Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] membres pagination
+  /membres/page/{pageSize}/{page}:
+    get:
+      tags:
+      - membre
+      summary: Liste membres avec pagination
+      parameters:
+      - name: pageSize
+        in: path
+        description: nombre item membres
+        required: true
+        type: integer
+      - name: page
+        in: path
+        description: nombre page membres
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [GET] get all role membre
+  /membre-roles:
+    get:
+      tags:
+      - membre
+      summary: Liste roles membre
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [GET] get all role membre
+  /membre-taper:
+    get:
+      tags:
+      - membre
+      summary: Liste taper membre
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [GET] get all role membre
+  /membre-status:
+    get:
+      tags:
+      - membre
+      summary: Liste status membre
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+
+# definitions
+definitions:
+  membre:
+    type: object
+    required:
+        - nom
+        - email
+        - prenom
+        - telephone
+        - adresse
+        - statut
+        - taper
+        - role
+    properties:
+      nom:
+        type: string
+        description: nom membre
+      email:
+        type: string
+        description: email membre
+      prenom:
+        type: string
+        description: prenom membre
+      telephone:
+        type: string
+        description: numero telephone membre
+      adresse:
+        type: string
+        description: adresse membre
+      statut:
+        type: string
+        description: statut membre
+      taper:
+        type: string
+        description: taper membre
+      role:
+        type: string
+        description: role membre
+      
+schemes:
+ - https
+ - http

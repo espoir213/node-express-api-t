@@ -1,0 +1,786 @@
+{
+	"info": {
+		"_postman_id": "4e10c565-00c6-4ae5-a4eb-f36c220ec251",
+		"name": "api cartool avec tamplate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "info societe",
+					"item": [
+						{
+							"name": "get info societe user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/info-societe/23"
+							},
+							"response": []
+						},
+						{
+							"name": "update info societe by id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "telephone",
+											"value": "0331512147",
+											"type": "default"
+										},
+										{
+											"key": "logos",
+											"type": "file",
+											"src": "/C:/Users/USER/Desktop/Capture.PNG"
+										}
+									]
+								},
+								"url": "http://localhost:3000/info-societe/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "formule de resevation",
+					"item": [
+						{
+							"name": "get formule reservation id user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/formule-reservation/64"
+							},
+							"response": []
+						},
+						{
+							"name": "update formule reservation by id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"termeCondition\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/formule-reservation/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "parametre systeme",
+					"item": [
+						{
+							"name": "get parametre systeme by id user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/parametre-systeme/64"
+							},
+							"response": []
+						},
+						{
+							"name": "update parametre systeme by id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nameSysteme\": \"string\",\r\n  \"userName\": \"string\",\r\n  \"keyAPI\": \"string\",\r\n  \"idServeur\": \"string\",\r\n  \"userNameSMTP\": \"string\",\r\n  \"fromEmail\": \"string\",\r\n  \"hostSMTP\": \"string\",\r\n  \"passwordSMTP\": \"string\",\r\n  \"portSMTP\": \"202\",\r\n  \"encryptionSMTP\": \"string\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/parametre-systeme/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"1234567890\",\r\n    \"membres\": 2\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/users"
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/users/64"
+					},
+					"response": []
+				},
+				{
+					"name": "update user by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"membres\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/users/22"
+					},
+					"response": []
+				},
+				{
+					"name": "delete user by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/users/4"
+					},
+					"response": []
+				},
+				{
+					"name": "confirm email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/users/confirmation/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsImVtYWlsIjoiYW5kcmlhbWloYXJpamFvbmFlcmlja0BnbWFpbC5jb20iLCJpYXQiOjE2NTI0NDY4NDgsImV4cCI6MTY1MjQ0NzcwOH0.ApMyYgjn8bwHJU7276Rr7xln93AS7XEwqWC011tdKeE"
+					},
+					"response": []
+				},
+				{
+					"name": "resend email confirmation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"erick1562290185@yopmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/users/resend-confirmation-email"
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXIxQG1haWwuY29tIiwiaWF0IjoxNjI0MjYxMjY1LCJleHAiOjE2MjQzNDc2NjV9.ljSEz3MLXECID2FwaB512gBLyV5A5pWP0Dq5fEORpYI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/users/refresh-token"
+					},
+					"response": []
+				},
+				{
+					"name": "forgot  Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"erick1562290185@yopmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/users/forgot-password"
+					},
+					"response": []
+				},
+				{
+					"name": "reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"qwerty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/users/reset-password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImVtYWlsIjoiYW5kcmlhbWloYXJpamFvbmFlcmlja0BnbWFpbC5jb20iLCJpYXQiOjE2NTI0NTM3MzQsImV4cCI6MTY1MjQ1NzMzNH0.yEwWsLFCkjZ0jt0FqGEsBjkg0_J3QJaSQ_Z8UPdpMP4"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"erick1562290185@yopmail.com\",    \r\n    \"password\": \"qwerty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/users/login"
+					},
+					"response": []
+				},
+				{
+					"name": "update password user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"1234567890\",\r\n    \"newPassword\": \"12345678900\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/users/edit-password/59"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "membre",
+			"item": [
+				{
+					"name": "get all membre avec pagination /pageSize(ex: 15)/page(1)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/membres/page/20/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get all roles membre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/membre-roles"
+					},
+					"response": []
+				},
+				{
+					"name": "get all status membre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/membre-status"
+					},
+					"response": []
+				},
+				{
+					"name": "get all taper membre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/membre-taper"
+					},
+					"response": []
+				},
+				{
+					"name": "get all membre",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTksImVtYWlsIjoiZXJpY2sxNTYyMjkwMUB5b3BtYWlsLmNvbSIsInJvbGUiOiJDb2xsYWJvcmF0ZXVyIiwiaWF0IjoxNjU0MDk2MjY5LCJleHAiOjE2NTQwOTk4Njl9.haYpT4LHABQPKr8Yyyk12rzhr28rGcJzjMV_rH23PLY"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/membres"
+					},
+					"response": []
+				},
+				{
+					"name": "create membre",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"erick15622901895@yopmail.com\",\r\n    \"password\": \"\",\r\n    \"prenom\": \"zaza\",\r\n    \"nom\": \"james\",\r\n    \"telephone\": \"0331512189\",\r\n    \"adresse\": \"fianarantsoa\",\r\n    \"statut\": \"active\",\r\n    \"taper\": \"sousTraitant\",\r\n    \"role\": \"personnelle\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/membres"
+					},
+					"response": []
+				},
+				{
+					"name": "get membre by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/membres/1"
+					},
+					"response": []
+				},
+				{
+					"name": "update membre by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"telephone\": \"6\",\r\n    \"taper\": \"sousTraitant\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/membres/2"
+					},
+					"response": []
+				},
+				{
+					"name": "delete membre by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/membres/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "ajouter client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "adresse",
+									"value": "helo",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "te404s5t@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "nomPrenom",
+									"value": "d",
+									"type": "default"
+								},
+								{
+									"key": "telephone",
+									"value": "0331512189",
+									"type": "default"
+								}
+							]
+						},
+						"url": "http://localhost:3000/client"
+					},
+					"response": []
+				},
+				{
+					"name": "lister client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/client"
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/client/2"
+					},
+					"response": []
+				},
+				{
+					"name": "modifier client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "adresse",
+									"value": "fianrantso",
+									"type": "default"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/USER/Desktop/Capture.PNG"
+								}
+							]
+						},
+						"url": "http://localhost:3000/client/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get client by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/client/3"
+					},
+					"response": []
+				},
+				{
+					"name": "get all client avec pagination /pageSize(ex: 15)/page(1)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/client/page/6/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "fournisseur",
+			"item": [
+				{
+					"name": "ajouter fournisseur",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"adresse\": \"string\",\r\n  \"email\": \"string\",\r\n  \"nom\": \"string\",\r\n  \"telephone\": \"string\",\r\n  \"nipTVA\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/fournisseur"
+					},
+					"response": []
+				},
+				{
+					"name": "lister fournisseur",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/fournisseur"
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer fournisseur",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/fournisseur/2"
+					},
+					"response": []
+				},
+				{
+					"name": "modifier fournisseur",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"adresse\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/fournisseur/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get fournisseur by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/fournisseur/3"
+					},
+					"response": []
+				},
+				{
+					"name": "get all fournisseur avec pagination /pageSize(ex: 15)/page(1)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/fournisseur/page/6/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "campagne",
+			"item": [
+				{
+					"name": "ajouter Campagne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"titleCampagne\": \"hellooo\",\r\n  \"message\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley\",\r\n  \"sendTo\": \"tousMembre\",\r\n  \"personSelected\": \"[1,2,3]\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/campagne"
+					},
+					"response": []
+				},
+				{
+					"name": "lister Campagne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/campagne"
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer Campagne",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/campagne/2"
+					},
+					"response": []
+				},
+				{
+					"name": "get Campagne by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/campagne/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get all Campagne avec pagination /pageSize(ex: 15)/page(1)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/campagne/page/6/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "inventaire",
+			"item": [
+				{
+					"name": "ajouter inventaire",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomArticle\": \"df\",\r\n    \"quantite\": 0,\r\n    \"quantiteReapro\": 0,\r\n    \"coutUnitaire\": 0,\r\n    \"codeArticle\": \"df\",\r\n    \"numeroEtagere\": \"df\",\r\n    \"uniteQt\": \"df\",\r\n    \"fournisseurs\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/inventaire"
+					},
+					"response": []
+				},
+				{
+					"name": "lister inventaire",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/inventaire"
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer inventaire",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/inventaire/2"
+					},
+					"response": []
+				},
+				{
+					"name": "modifier inventaire",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomArticle\": \"df\",\r\n    \"quantite\": 0,\r\n    \"quantiteReapro\": 0,\r\n    \"coutUnitaire\": 0,\r\n    \"codeArticle\": \"df\",\r\n    \"numeroEtagere\": \"df\",\r\n    \"uniteQt\": \"df\",\r\n    \"fournisseur\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/inventaire/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get  inventaire by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/inventaire/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get all inventaire avec pagination /pageSize(ex: 15)/page(1)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/inventaire/page/6/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "piece commande",
+			"item": [
+				{
+					"name": "ajouter piece commande",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"referencePiece\": \"string\",\r\n  \"nomEntree\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/piece-commande"
+					},
+					"response": []
+				},
+				{
+					"name": "lister piece commande",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/piece-commande"
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer piece commande",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/piece-commande/2"
+					},
+					"response": []
+				},
+				{
+					"name": "modifier piece commande",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"referencePiece\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/piece-commande/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get piece commandeby id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/piece-commande/3"
+					},
+					"response": []
+				},
+				{
+					"name": "get all piece commande avec pagination /pageSize(ex: 15)/page(1)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/piece-commande/page/6/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

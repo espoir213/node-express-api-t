@@ -1,0 +1,126 @@
+tags:
+- name: piece-commande
+  description: Pièces de réservation API
+
+paths:
+
+# [GET] piece-commande
+  /piece-commande:
+    get:
+      tags:
+      - piece-commande
+      summary: Liste piece-commande
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] piece-commande
+    post:
+      tags:
+      - piece-commande
+      summary: Creer piece-commande
+      parameters:
+      - name: body
+        in: body
+        description: piece-commande Data
+        schema:
+          $ref: '#/definitions/piece-commande'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] piece-commande/id
+  /piece-commande/{id}:
+    get:
+      tags:
+      - piece-commande
+      summary: Find piece-commande By Id
+      parameters:
+      - name: id
+        in: path
+        description: piece-commande Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] piece-commande/{id}
+    put:
+      tags:
+      - piece-commande
+      summary: Modifier piece-commande
+      parameters:
+      - name: id
+        in: path
+        required: true
+      - name: body
+        in: body
+        description: piece-commande Data
+        required: false
+        schema:
+          $ref: '#/definitions/piece-commande'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] piece-commande/id
+    delete:
+      tags:
+      - piece-commande
+      summary: Supprimer piece-commande By Id
+      parameters:
+      - name: id
+        in: path
+        description: piece-commande Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  piece-commande:
+    type: object
+    required:
+        - nomPiece
+        - nomEntree
+        - status
+    properties:
+      referencePiece:
+        type: string
+        description:  Nom de la pièce
+        required: true
+      nomEntree:
+        type: string
+        description:  Nom d'entrée
+      status:
+        type: string
+        description:  status
+
+schemes:
+ - https
+ - http

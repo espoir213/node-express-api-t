@@ -1,0 +1,169 @@
+tags:
+- name: Commercialisation
+  description: Commercialisation API
+
+paths:
+
+# [GET] campagne
+  /campagne:
+    get:
+      tags:
+      - Commercialisation
+      summary: Liste campagne
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] campagne
+    post:
+      tags:
+      - Commercialisation
+      summary: Creer campagne
+      parameters:
+      - name: body
+        in: body
+        description: campagne Data
+        
+        schema:
+          $ref: '#/definitions/campagne'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] campagne/id
+  /campagne/{id}:
+    get:
+      tags:
+      - Commercialisation
+      summary: Find campagne By Id
+      parameters:
+      - name: id
+        in: path
+        description: campagne Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] campagne/id
+    delete:
+      tags:
+      - Commercialisation
+      summary: Supprimer campagne By Id
+      parameters:
+      - name: id
+        in: path
+        description: campagne Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] campagne pagination
+  /campagne/page/{pageSize}/{page}:
+    get:
+      tags:
+      - Commercialisation
+      summary: Liste campagne avec pagination
+      parameters:
+      - name: pageSize
+        in: path
+        description: nombre item campagne
+        required: true
+        type: integer
+      - name: page
+        in: path
+        description: nombre page campagne
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [GET] type dest 
+  /type-dest:
+    get:
+      tags:
+      - Commercialisation
+      summary: Liste type destinateurs
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [GET] campagne/id
+  /campagne/recipients/{id}:
+    get:
+      tags:
+      - Commercialisation
+      summary: Find all recipients campagne By Id campagne
+      parameters:
+      - name: id
+        in: path
+        description: campagne Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  campagne:
+    type: object
+    required:
+        - titleCampagne
+        - message
+        - personSelected
+        - sendTo
+        - telephone
+    properties:
+      titleCampagne:
+        type: string
+        description:  title campagne
+        required: true
+      message:
+        type: integer
+        description:  message campagne
+        required: true
+      personSelected:
+        type: string
+        description:  person selected campagne ex:"[1,2,3, ...]"
+        required: false
+      sendTo:
+        type: string
+        description:  sendTo person campagne ex:"tousMembre, tousClient, ..."
+        required: true
+      telephone:
+        type: string
+        description:  telephone number Manually
+        required: false
+        
+schemes:
+ - https
+ - http

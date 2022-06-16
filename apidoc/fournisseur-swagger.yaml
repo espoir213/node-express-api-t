@@ -1,0 +1,163 @@
+tags:
+- name: fournisseur
+  description: fournisseur API
+
+paths:
+
+# [GET] fournisseur
+  /fournisseur:
+    get:
+      tags:
+      - fournisseur
+      summary: Liste fournisseur
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] fournisseur
+    post:
+      tags:
+      - fournisseur
+      summary: Creer fournisseur
+      parameters:
+      - name: body
+        in: body
+        description: fournisseur Data
+        required: true
+        schema:
+          $ref: '#/definitions/fournisseur'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] fournisseur/id
+  /fournisseur/{id}:
+    get:
+      tags:
+      - fournisseur
+      summary: Find fournisseur By Id
+      parameters:
+      - name: id
+        in: path
+        description: fournisseur Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] fournisseur/{id}
+    put:
+      tags:
+      - fournisseur
+      summary: Modifier fournisseur
+      parameters:
+      - name: id
+        in: path
+        required: true
+      - name: body
+        in: body
+        description: fournisseur Data
+        required: false
+        schema:
+          $ref: '#/definitions/fournisseur'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] fournisseur/id
+    delete:
+      tags:
+      - fournisseur
+      summary: Supprimer fournisseur By Id
+      parameters:
+      - name: id
+        in: path
+        description: fournisseur Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] fournisseur pagination
+  /fournisseur/page/{pageSize}/{page}:
+    get:
+      tags:
+      - fournisseur
+      summary: Liste fournisseur avec pagination
+      parameters:
+      - name: pageSize
+        in: path
+        description: nombre item fournisseur
+        required: true
+        type: integer
+      - name: page
+        in: path
+        description: nombre page fournisseur
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  fournisseur:
+    type: object
+    required:
+        - adresse
+        - email
+        - nom
+        - telephone
+        - nipTVA
+    properties:
+      adresse:
+        type: string
+        description:  adresse fournisseur
+        required: true
+      email:
+        type: string
+        description:  email fournisseur
+        required: true
+      nom:
+        type: string
+        description:  nom fournisseur
+        required: true
+      telephone:
+        type: string
+        description:  telephone fournisseur
+        required: true 
+      nipTVA:
+        type: string
+        description:  NIP TVA fournisseur
+        required: true  
+
+        
+schemes:
+ - https
+ - http

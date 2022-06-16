@@ -1,0 +1,231 @@
+tags:
+- name: facture
+  description: facture API
+
+paths:
+
+# [GET] facture
+  /facture:
+    get:
+      tags:
+      - facture
+      summary: Liste facture
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] facture
+    post:
+      tags:
+      - facture
+      summary: Creer facture
+      parameters:
+      - name: body
+        in: body
+        description: facture Data
+        required: true
+        schema:
+          $ref: '#/definitions/facture'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] facture/id
+  /facture/{id}:
+    get:
+      tags:
+      - facture
+      summary: Find facture By Id
+      parameters:
+      - name: id
+        in: path
+        description: facture Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] facture/{id}
+    put:
+      tags:
+      - facture
+      summary: Modifier facture
+      parameters:
+      - name: id
+        in: path
+        required: false
+      - name: body
+        in: body
+        description: facture Data
+        required: false
+        schema:
+          $ref: '#/definitions/factureModel'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] facture/id
+    delete:
+      tags:
+      - facture
+      summary: Supprimer facture By Id
+      parameters:
+      - name: id
+        in: path
+        description: facture Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] facture pagination
+  /facture/page/{pageSize}/{page}:
+    get:
+      tags:
+      - facture
+      summary: Liste facture avec pagination
+      parameters:
+      - name: pageSize
+        in: path
+        description: nombre item facture
+        required: true
+        type: integer
+      - name: page
+        in: path
+        description: nombre page facture
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+
+# [GET] facture/by-status/id
+  /facture/by-status/{status}:
+    get:
+      tags:
+      - facture
+      summary: Find facture By status
+      parameters:
+      - name: status
+        in: path
+        description: facture status 0 si non payer 1 si payer
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+# definitions
+definitions:
+  facture:
+    type: object
+    required:
+        - factures
+        - infosfacture
+    properties:
+      factures:
+        type: object
+        description:  facture
+        $ref: '#/definitions/factureModel'
+
+      infosfacture:
+        type: array
+        description:  infos facture
+        items:
+          $ref: '#/definitions/infos-factures'
+
+  factureModel:
+    type: object
+    required:
+        - remarques
+        - projets
+        - total
+        - sousTotal
+        - impot
+        - dateFacturation
+        - datePaiement
+        - modePayement
+    properties:
+      projets:
+        type: integer
+        description:  id projets
+      remarques:
+        type: string
+        description:  remarques facture
+      total:
+        type: integer
+        description:  total facture
+      sousTotal:
+        type: integer
+        description:   sous Total facture
+      impot:
+        type: integer
+        description:   impot facture
+      dateFacturation:
+        type: string
+        description:   date de Facturation
+      datePaiement:
+        type: string
+        description:   date de Paiement facture
+      modePayement:
+        type: string
+        description:   mode de Payement
+    
+  infos-factures:
+    type: object
+    required:
+        - quantite
+        - coutUnite
+        - impot
+        - total
+        - description
+    properties:
+      quantite:
+        type: integer
+        description:  quantite infos facture
+      coutUnite:
+        type: integer
+        description:  cout Unite infos facture
+      impot:
+        type: integer
+        description:  pourcentage impot infos facture
+      total:
+        type: integer
+        description:  total infos facture
+      description:
+        type: string
+        description:  description infos facture
+  
+schemes:
+ - https
+ - http

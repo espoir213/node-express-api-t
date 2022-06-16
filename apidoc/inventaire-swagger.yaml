@@ -1,0 +1,170 @@
+tags:
+- name: inventaire
+  description: inventaire API
+
+paths:
+
+# [GET] inventaire
+  /inventaire:
+    get:
+      tags:
+      - inventaire
+      summary: Liste inventaire
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] inventaire
+    post:
+      tags:
+      - inventaire
+      summary: Creer inventaire
+      parameters:
+      - name: body
+        in: body
+        description: inventaire Data
+        required: true
+        schema:
+          $ref: '#/definitions/inventaire'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] inventaire/id
+  /inventaire/{id}:
+    get:
+      tags:
+      - inventaire
+      summary: Find inventaire By Id
+      parameters:
+      - name: id
+        in: path
+        description: inventaire Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] inventaire/{id}
+    put:
+      tags:
+      - inventaire
+      summary: Modifier inventaire
+      parameters:
+      - name: id
+        in: path
+        required: true
+      - name: body
+        in: body
+        description: inventaire Data
+        required: false
+        schema:
+          $ref: '#/definitions/inventaire'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] inventaire/id
+    delete:
+      tags:
+      - inventaire
+      summary: Supprimer inventaire By Id
+      parameters:
+      - name: id
+        in: path
+        description: inventaire Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] inventaire pagination
+  /inventaire/page/{pageSize}/{page}:
+    get:
+      tags:
+      - inventaire
+      summary: Liste inventaire avec pagination
+      parameters:
+      - name: pageSize
+        in: path
+        description: nombre item inventaire
+        required: true
+        type: integer
+      - name: page
+        in: path
+        description: nombre page inventaire
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  inventaire:
+    type: object
+    required:
+        - adresse
+        - quantite
+        - nomArticle
+        - coutUnitaire
+        - codeArticle
+        - numeroEtagere
+        - uniteQt
+        - fournisseurs
+    properties:
+      adresse:
+        type: string
+        description:  adresse inventaire
+      quantite:
+        type: integer
+        description:  quantite inventaire
+      nomArticle:
+        type: string
+        description:  nom inventaire
+      coutUnitaire:
+        type: string
+        description:  cout Unitaire inventaire 
+      codeArticle:
+        type: string
+        description:  code Article inventaire 
+      numeroEtagere:
+        type: string
+        description:  numero etagere inventaire  
+      uniteQt:
+        type: string
+        description:  unite quantite inventaire 
+      fournisseurs:
+        type: string
+        description:  fournisseur inventaire 
+
+        
+schemes:
+ - https
+ - http

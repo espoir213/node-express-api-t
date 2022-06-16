@@ -1,0 +1,199 @@
+tags:
+- name: devis
+  description: devis API
+
+paths:
+
+# [GET] devis
+  /devis:
+    get:
+      tags:
+      - devis
+      summary: Liste devis
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] devis
+    post:
+      tags:
+      - devis
+      summary: Creer devis
+      parameters:
+      - name: body
+        in: body
+        description: devis Data
+        required: true
+        schema:
+          $ref: '#/definitions/devis'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] devis/id
+  /devis/{id}:
+    get:
+      tags:
+      - devis
+      summary: Find devis By Id
+      parameters:
+      - name: id
+        in: path
+        description: devis Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] devis/{id}
+    put:
+      tags:
+      - devis
+      summary: Modifier devis
+      parameters:
+      - name: id
+        in: path
+        required: false
+      - name: body
+        in: body
+        description: devis Data
+        required: false
+        schema:
+          $ref: '#/definitions/devisModel'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] devis/id
+    delete:
+      tags:
+      - devis
+      summary: Supprimer devis By Id
+      parameters:
+      - name: id
+        in: path
+        description: devis Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] devis pagination
+  /devis/page/{pageSize}/{page}:
+    get:
+      tags:
+      - devis
+      summary: Liste devis avec pagination
+      parameters:
+      - name: pageSize
+        in: path
+        description: nombre item devis
+        required: true
+        type: integer
+      - name: page
+        in: path
+        description: nombre page devis
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  devis:
+    type: object
+    required:
+        - devis
+        - infosDevis
+    properties:
+      devis:
+        type: object
+        description:  devis
+        $ref: '#/definitions/devisModel'
+
+      infosDevis:
+        type: array
+        description:  infos devis
+        items:
+          $ref: '#/definitions/infos-devis'
+
+  devisModel:
+    type: object
+    required:
+        - details
+        - projets
+        - total
+        - sousTotal
+        - impot
+    properties:
+      projets:
+        type: integer
+        description:  id projets
+      details:
+        type: string
+        description:  details devis
+      total:
+        type: integer
+        description:  total devis
+      sousTotal:
+        type: integer
+        description:   sous Total facture
+      impot:
+        type: integer
+        description:   impot facture
+    
+  infos-devis:
+    type: object
+    required:
+        - quantite
+        - coutUnite
+        - impot
+        - total
+        - description
+    properties:
+      quantite:
+        type: integer
+        description:  quantite infos devis
+      coutUnite:
+        type: integer
+        description:  cout Unite infos devis
+      impot:
+        type: integer
+        description:  pourcentage impot infos devis
+      total:
+        type: integer
+        description:  total infos devis
+      description:
+        type: string
+        description:  description infos devis
+  
+schemes:
+ - https
+ - http

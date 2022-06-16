@@ -1,0 +1,159 @@
+tags:
+- name: payement
+  description: payement API
+
+paths:
+
+# [GET] payement
+  /payement:
+    get:
+      tags:
+      - payement
+      summary: Liste payement
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] payement
+    post:
+      tags:
+      - payement
+      summary: Creer payement
+      parameters:
+      - name: body
+        in: body
+        description: payement Data
+        required: true
+        schema:
+          $ref: '#/definitions/payement'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] payement/id
+  /payement/{id}:
+    get:
+      tags:
+      - payement
+      summary: Find payement By Id
+      parameters:
+      - name: id
+        in: path
+        description: payement Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] payement/{id}
+    put:
+      tags:
+      - payement
+      summary: Modifier payement
+      parameters:
+      - name: id
+        in: path
+        required: false
+      - name: body
+        in: body
+        description: payement Data
+        required: false
+        schema:
+          $ref: '#/definitions/payement'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] payement/id
+    delete:
+      tags:
+      - payement
+      summary: Supprimer payement By Id
+      parameters:
+      - name: id
+        in: path
+        description: payement Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+# [GET] payement pagination
+  /payement/page/{pageSize}/{page}:
+    get:
+      tags:
+      - membre
+      summary: Liste payement avec pagination
+      parameters:
+      - name: pageSize
+        in: path
+        description: nombre item payement
+        required: true
+        type: integer
+      - name: page
+        in: path
+        description: nombre page payement
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  payement:
+    type: object
+    required:
+        - montant
+        - note
+        - datePaiement
+        - modePayement
+        - factures
+    properties:
+      montant:
+        type: integer
+        description:  montant payement
+      note:
+        type: string
+        description:  note de description payement
+      datePaiement:
+        type: string
+        description:  date de paiement payement
+      modePayement:
+        type: string
+        description:  mode de payement
+      factures:
+        type: integer
+        description:  id factures a payer
+
+
+schemes:
+ - https
+ - http

@@ -1,0 +1,21 @@
+tags:
+- name: dashboard
+  description: dashboard API
+
+paths:
+
+# [GET] dashboard/total-client
+  /dashboard/total-client:
+    get:
+      tags:
+      - dashboard
+      summary: Nombre total client
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+schemes:
+ - https
+ - http

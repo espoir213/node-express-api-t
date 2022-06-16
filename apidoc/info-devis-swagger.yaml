@@ -1,0 +1,146 @@
+tags:
+- name: infos-devis
+  description: infos-devis API
+
+paths:
+
+# [GET] infos-devis
+  /infos-devis/by-devis/{idDevis}:
+    get:
+      tags:
+      - infos-devis
+      summary: Liste infos-devis by id devis
+      parameters:
+      - name: idDevis
+        in: path
+        description: id devis 
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] infos-devis
+  /infos-devis:
+    post:
+      tags:
+      - infos-devis
+      summary: Creer infos-devis
+      parameters:
+      - name: body
+        in: body
+        description: infos-devis Data
+        required: true
+        schema:
+          $ref: '#/definitions/info-devis'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] infos-devis/id
+  /infos-devis/{id}:
+    get:
+      tags:
+      - infos-devis
+      summary: Find infos-devis By Id
+      parameters:
+      - name: id
+        in: path
+        description: infos-devis Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] infos-devis/{id}
+    put:
+      tags:
+      - infos-devis
+      summary: Modifier infos-devis
+      parameters:
+      - name: id
+        in: path
+        required: false
+      - name: body
+        in: body
+        description: infos-devis Data
+        required: false
+        schema:
+          $ref: '#/definitions/info-devis'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] infos-devis/id
+    delete:
+      tags:
+      - infos-devis
+      summary: Supprimer infos-devis By Id
+      parameters:
+      - name: id
+        in: path
+        description: infos-devis Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  info-devis:
+    type: object
+    required:
+        - quantite
+        - coutUnite
+        - impot
+        - total
+        - description
+        - devis
+    properties:
+      quantite:
+        type: integer
+        description:  quantite infos devis
+      coutUnite:
+        type: integer
+        description:  cout Unite infos devis
+      impot:
+        type: integer
+        description:  pourcentage impot infos devis
+      total:
+        type: integer
+        description:  total infos devis
+      description:
+        type: string
+        description:  description infos devis
+      devis:
+        type: integer
+        description:  id devis
+
+
+schemes:
+ - https
+ - http

@@ -1,0 +1,174 @@
+tags:
+- name: carte-travail-client
+  description: carte-travail-client API
+
+paths:
+
+# [GET] carte-travail-client
+  /carte-travail-client/by-client/{idClient}:
+    get:
+      tags:
+      - carte-travail-client
+      summary: Find all carte-travail-client By Id client
+      parameters:
+      - name: idClient
+        in: path
+        description: liste carte-travail-client Id client
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] carte-travail-client
+  /carte-travail-client:
+    post:
+      tags:
+      - carte-travail-client
+      summary: Creer carte-travail-client
+      parameters:
+      - name: body
+        in: body
+        description: carte-travail-client Data
+        required: true
+        schema:
+          $ref: '#/definitions/carte-travail-client'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] carte-travail-client/id
+  /carte-travail-client/{id}:
+    get:
+      tags:
+      - carte-travail-client
+      summary: Find carte-travail-client By Id
+      parameters:
+      - name: id
+        in: path
+        description: carte-travail-client Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] carte-travail-client/{id}
+    put:
+      tags:
+      - carte-travail-client
+      summary: Modifier carte-travail-client
+      parameters:
+      - name: id
+        in: path
+        required: false
+      - name: body
+        in: body
+        description: carte-travail-client Data
+        required: false
+        schema:
+          $ref: '#/definitions/carte-travail-client'
+      responses:
+        201:
+          description: 'Updated'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] carte-travail-client/id
+    delete:
+      tags:
+      - carte-travail-client
+      summary: Supprimer carte-travail-client By Id
+      parameters:
+      - name: id
+        in: path
+        description: carte-travail-client Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+# [GET] carte-travail-client
+  /carte-travail-client-status:
+    get:
+      tags:
+      - carte-travail-client
+      summary: Liste status carte-travail-client
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  carte-travail-client:
+    type: object
+    required:
+        - rapportCorporel
+        - rapportMecanique
+        - rapportElectrique
+        - projets
+        - status
+    properties:
+      rapportCorporel:
+        type: array
+        description:  rapport Corporel 
+        items:
+          $ref: '#/definitions/itemCarte' 
+      rapportMecanique:
+        type: array
+        description:  rapport Mecanique
+        items:
+          $ref: '#/definitions/itemCarte' 
+      rapportElectrique:
+        type: array
+        description:  rapport rapport Electrique
+        items:
+          $ref: '#/definitions/itemCarte'
+      projets:
+        type: integer
+        description:  projet
+      status:
+        type: string
+        description:  status carte de travail
+      
+
+  itemCarte:
+    type: object
+    required:
+        - id
+        - nom
+    properties:
+      id:
+        type: string
+        description:  id item
+      nom:
+        type: string
+        description:  nom item
+
+schemes:
+ - https
+ - http
