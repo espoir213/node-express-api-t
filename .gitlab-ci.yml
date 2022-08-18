@@ -1,7 +1,7 @@
 variables:
-  APP_NAME: "Expressapi2"
-  APP_CONTAINER_PORT: "80"
-  APP_EXPOSED_PORT: "80"
+  APP_NAME: "Expressapicicd"
+  APP_CONTAINER_PORT: "89"
+  APP_EXPOSED_PORT: "89"
   HEROKU_APP_STG: "ci-testapp-staging"
   HEROKU_APP_PROD: "si-testapp-prod"
   HEROKU_DOMAIN: "herokuapp.com"
