@@ -14,6 +14,8 @@ WORKDIR /home/client
 
 COPY package.json /home/client
 
+RUN npm install npm@latest -g
+
 RUN npm i
 
 RUN useradd --home /home/client client
