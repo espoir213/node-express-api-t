@@ -1,6 +1,6 @@
 FROM ubuntu:20.04 as base
 
-RUN apt-get update
+RUN apt-get update -y
 
 RUN apt-get install curl -y
 
