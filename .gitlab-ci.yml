@@ -1,5 +1,5 @@
 variables:
-  APP_NAME: "erick-test"
+  APP_NAME: "erick-test2"
   APP_CONTAINER_PORT: "89"
   APP_EXPOSED_PORT: "89"
   HEROKU_APP_STG: "si-pyxtapp-staging2"
