@@ -1,9 +1,9 @@
 variables:
-  APP_NAME: "erick-test2"
-  APP_CONTAINER_PORT: "85"
-  APP_EXPOSED_PORT: "85"
-  HEROKU_APP_STG: "si-pyxtapp-staging2"
-  HEROKU_APP_PROD: "si-pyxtapp-prod2"
+  APP_NAME: "erick-test23"
+  APP_CONTAINER_PORT: "82"
+  APP_EXPOSED_PORT: "82"
+  HEROKU_APP_STG: "si-pyxtapp-staging23"
+  HEROKU_APP_PROD: "si-pyxtapp-prod23"
   HEROKU_DOMAIN: "herokuapp.com"
   
 
@@ -28,7 +28,7 @@ stages:
   image: alpine
   script:
     - apk --no-cache add curl
-    - curl "https://$DOMAIN" | grep -i "Dimension"  
+# - curl "https://$DOMAIN" | grep -i "Dimension"  
 
 docker-build:
   # Use the official docker image.
@@ -46,7 +46,7 @@ test acceptation:
   stage: Test acceptation
   script:
     - docker load < ${APP_NAME}.tar
-    - docker run -d -p ${APP_EXPOSED_PORT}:${APP_CONTAINER_PORT} -e PORT=${APP_CONTAINER_PORT} --name expressapitest2 ${APP_NAME}
+    - docker run -d -p ${APP_EXPOSED_PORT}:${APP_CONTAINER_PORT} -e PORT=${APP_CONTAINER_PORT} --name expressapitest23 ${APP_NAME}
     - sleep 5
     - apk --no-cache add curl
   #- curl "http://docker:${APP_CONTAINER_PORT}" | grep -i "Dimension"
