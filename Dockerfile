@@ -1,5 +1,5 @@
 #FROM ubuntu:20.04 as base
-FROM ubuntu:latest
+FROM alpine:latest
 
 RUN apt-get update 
 
