@@ -64,7 +64,8 @@ release image:
 deploy staging:
   stage: Deploy staging
   tags: 
-       - deepin-linux 
+       - docker4-pyxt
+       - deepin-linux
   environment:
     name: staging
     url: https://${HEROKU_APP_STG}.${HEROKU_DOMAIN}
@@ -80,6 +81,7 @@ deploy prod:
   stage: Deploy prod
   tags: 
        - deepin-linux
+       - docker4-pyxt
   environment:
     name: prod
     url: https://${HEROKU_APP_PROD}.${HEROKU_DOMAIN}
@@ -97,6 +99,7 @@ deploy prod:
 deploy review:
   stage: Deploy review
   tags: 
+       - docker4-pyxt
        - deepin-linux
   environment:
     name: review/$CI_COMMIT_REF_NAME
@@ -116,6 +119,7 @@ stop review:
   stage: Stop review
   tags: 
        - deepin-linux
+       - docker4-pyxt
   variables:
     GIT_STRATEGY: none
   environment:
@@ -135,6 +139,7 @@ test staging:
   stage: Test staging
   tags: 
        - deepin-linux
+       - docker4-pyxt
   variables:
     DOMAIN: ${HEROKU_APP_STG}.${HEROKU_DOMAIN}
 
@@ -144,6 +149,7 @@ test prod:
   stage: Test prod
   tags: 
        - deepin-linux
+       - docker4-pyxt
   only:
     - master  
   variables:
