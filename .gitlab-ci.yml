@@ -1,9 +1,9 @@
 variables:
-  APP_NAME: "Expressapicicd"
+  APP_NAME: "erick-test"
   APP_CONTAINER_PORT: "89"
   APP_EXPOSED_PORT: "89"
-  HEROKU_APP_STG: "ci-testapp-staging"
-  HEROKU_APP_PROD: "si-testapp-prod"
+  HEROKU_APP_STG: "si-pyxtapp-staging2"
+  HEROKU_APP_PROD: "si-pyxtapp-prod2"
   HEROKU_DOMAIN: "herokuapp.com"
   
 
@@ -34,7 +34,7 @@ docker-build:
   # Use the official docker image.
   stage: build
   script:
-    - docker build -t  ${APP_NAME} .
+    - docker build -t ${APP_NAME} .
     - docker save ${APP_NAME} > ${APP_NAME}.tar
   artifacts:
     paths:
@@ -46,7 +46,7 @@ test acceptation:
   stage: Test acceptation
   script:
     - docker load < ${APP_NAME}.tar
-    - docker run -d -p ${APP_EXPOSED_PORT}:${APP_CONTAINER_PORT} -e PORT=${APP_CONTAINER_PORT} --name expressapitest ${APP_NAME}
+    - docker run -d -p ${APP_EXPOSED_PORT}:${APP_CONTAINER_PORT} -e PORT=${APP_CONTAINER_PORT} --name expressapitest1 ${APP_NAME}
     - sleep 5
     - apk --no-cache add curl
   #- curl "http://docker:${APP_CONTAINER_PORT}" | grep -i "Dimension"
